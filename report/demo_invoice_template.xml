@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="invoice_report_template">
+        <t t-call="web.html_container">
+            <t t-call="demo_print.custom_layout">
+                <t t-call="demo_print._page_head"></t>
+                <br/>
+                <h3 class="text-center">A5 Print</h3>
+                <br/>
+                <br/>
+                <div class="page">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="row">
+                            <div class="col-8 text-left">
+                                <h5 style="font-size: 15px">
+                                        Date  : <span t-field="o.invoice_date"/>
+                                </h5>
+                            </div>
+
+                            <div class="col-4 text-left">
+                                <h5 style="font-size: 15px">
+                                    Invoice No  : <span t-field="o.name"/>
+                                </h5>
+
+                            </div>
+                        </div>
+
+                        <table class="table text-center table-bordered" style="table-layout: fixed;fixed;width:1000px;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="vertical-align: middle;width:40px;border: 1px solid black">No.</th>
+                                    <th class="text-center" style="vertical-align: middle;width:200px;border: 1px solid black">Product Description</th>
+                                    <th class="text-center" style="vertical-align: middle;width:40px;border: 1px solid black">Quantity</th>
+                                    <th class="text-center" style="vertical-align: middle;width:50px;border: 1px solid black">Price</th>
+                                    <th class="text-center" style="vertical-align: middle;width:70px;border: 1px solid black">Subtotal</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="i" t-value="1" />
+
+                                <tr t-foreach="o.invoice_line_ids" t-as="invoice_line">
+                                    <td style="border: 1px solid black">
+                                        <span t-esc="i"></span>
+                                        <t t-set="i" t-value="i+1"/>
+                                    </td>
+                                    <td class="text-left" style="border: 1px solid black">
+                                        <span t-field="invoice_line.product_id"/>
+                                    </td>
+                                    <td style="border: 1px solid black">
+                                        <span t-esc="invoice_line.quantity"/>
+                                    </td>
+                                    <td style="border: 1px solid black">
+                                        <span t-esc="invoice_line.price_unit"/>
+                                    </td>
+                                    <td style="border: 1px solid black">
+                                        <span t-esc="invoice_line.price_subtotal"/>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <br/>
+                        <br/>
+
+
+                        <div class="row">
+                            <div class="col-8 text-left">
+                                <h5 style="font-size: 15px">Checked By:  </h5>
+                            </div>
+                            <div class="col-4 text-left">
+                                <h5 style="font-size: 15px">Approved By:  </h5>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div t-if="report_type == 'pdf'" class="text-muted">
+                                <h5 style="font-size: 15px">FO-PU-03 REV 00 / <span>
+                                    <span t-field="o.name"/>
+                                </span> / Page <span class="page"/>
+ /                            <span class="topage"/>
+                        </h5>
+                    </div>
+                </div>
+
+            </t>
+        </div>
+    </t>
+</t>
+</template>
+
+</odoo>

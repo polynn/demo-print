@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <template id="_page_head">
+            <div class="header">
+                <div class="row mt8 first-page">
+                    <div class="col-12">
+                        DEMO PRINT
+                    </div>
+                </div>
+            </div>
+        </template>    
+    </data>
+</odoo>
